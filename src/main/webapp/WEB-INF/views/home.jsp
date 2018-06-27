@@ -6,6 +6,7 @@
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
 
+
 <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
 <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>
 <link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css'>
@@ -66,21 +67,39 @@
   <label class="col-md-4 control-label">NAME</label>  
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input name="username" placeholder="NAME" class="form-control"  type="text">
     </div>
   </div>
 </div>
 
 
+<!-- radio checks -->
+ <div class="form-group">
+    <label class="col-md-4 control-label">GENDER</label>
+    <div class="col-md-4">
+        <div class="radio">
+            <label>
+                <input type="radio" name="gender" value="male" /> MALE
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="gender" value="fmale" /> FMALE
+            </label>
+        </div>
+    </div>
+</div>
+
+
 <!-- Text input-->
        
 <div class="form-group">
-  <label class="col-md-4 control-label">Phone #</label>  
+  <label class="col-md-4 control-label">HOBBY</label>  
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input name="hobby" placeholder="HOBBY" class="form-control" type="text">
     </div>
   </div>
 </div>
@@ -115,7 +134,7 @@
   <label class="col-md-4 control-label">State</label>
     <div class="col-md-4 selectContainer">
     <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
     <select name="state" class="form-control selectpicker" >
       <option value=" " >Please select your state</option>
       <option>Alabama</option>
@@ -196,23 +215,6 @@
     </div>
   </div>
 </div>
-
-<!-- radio checks -->
- <div class="form-group">
-                        <label class="col-md-4 control-label">Do you have hosting?</label>
-                        <div class="col-md-4">
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="hosting" value="yes" /> Yes
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="hosting" value="no" /> No
-                                </label>
-                            </div>
-                        </div>
-                    </div>
 
 <!-- Text area -->
   
