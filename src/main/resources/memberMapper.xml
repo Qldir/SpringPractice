@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- member SQL -->
+<mapper namespace="dao.MemberMapper">
+
+<!-- user join -->
+<insert id="insertMember" parameterType="Member">
+	INSERT INTO MEMBERS2
+	(
+		userid,
+		userpwd,
+		username,
+		gender,
+		hobby,
+		birth,
+		age,
+		phone,
+		address,
+		introduce
+	)
+	VALUES
+	(
+		#{userid},
+		#{userpwd},
+		#{username},
+		#{gender},
+		#{hobby},
+		#{birth},
+		#{age},
+		#{phone},
+		#{address},
+		#{introduce}
+	)
+</insert>
+
+<!-- user login -->
+<select id="login" parameterType="Member" resultType="Member">
+	SELECT
+		userid,
+		username
+	FROM MEMBER
+	WHERE
+		userid = #{userid}
+	AND
+		userpwd = #{userpwd}
+</select>
+
+
+</mapper>
