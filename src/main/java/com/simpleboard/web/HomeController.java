@@ -1,14 +1,20 @@
 package com.simpleboard.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import dao.BoardMapper;
 import dao.MemberMapper;
+import dto.Board;
 import dto.Member;
 
 /**
@@ -36,8 +42,23 @@ public class HomeController {
 		hsession.setAttribute("userid", user.getUserid());
 		hsession.setAttribute("username", user.getUsername());
 		
+		return "redirect:/board";
+	}
+	
+	@RequestMapping(value = "/board", method = RequestMethod.GET)
+	public String board(Model model) {
+		
+		List<Board> boardList = new ArrayList<Board>();
+		
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		boardList = mapper.boardList();
+		
+		System.out.println(boardList);
+		model.addAttribute("boardList", boardList);
+		
 		return "board";
 	}
+
 	
 	
 	@RequestMapping(value = "/contact", method = RequestMethod.POST)

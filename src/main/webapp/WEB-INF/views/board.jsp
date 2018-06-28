@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html">
 <html>
 <head>
@@ -41,95 +42,137 @@ $(function(){
 </script>
 
 
+
+<style type="text/css">
+    body{
+        line-height:2em;        
+        font-family:"맑은 고딕";
+}
+    ul, li{ 
+        list-style:none;
+        text-align:center;
+        padding:0;
+        margin:0;
+}
+
+    #mainWrapper{
+        width: 800px;
+        margin: 0 auto; /*가운데 정렬*/
+    }
+
+    #mainWrapper > ul > li:first-child {
+        text-align: center;
+        font-size:14pt;
+        height:40px;
+        vertical-align:middle;
+        line-height:30px;
+}
+
+    #ulTable {margin-top:10px;}
+    
+
+    #ulTable > li:first-child > ul > li {
+        background-color:#c9c9c9;
+        font-weight:bold;
+        text-align:center;
+}
+
+    #ulTable > li > ul {
+        clear:both;
+        padding:0px auto;
+        position:relative;
+        min-width:40px;
+}
+    #ulTable > li > ul > li { 
+        float:left;
+        font-size:10pt;
+        border-bottom:1px solid silver;
+        vertical-align:baseline;
+}    
+
+    #ulTable > li > ul > li:first-child               {width:10%;} /*No 열 크기*/
+    #ulTable > li > ul > li:first-child +li           {width:45%;} /*제목 열 크기*/
+    #ulTable > li > ul > li:first-child +li+li        {width:20%;} /*작성일 열 크기*/
+    #ulTable > li > ul > li:first-child +li+li+li     {width:15%;} /*작성자 열 크기*/
+    #ulTable > li > ul > li:first-child +li+li+li+li{width:10%;} /*조회수 열 크기*/
+
+    #divPaging {
+          clear:both; 
+        margin:0 auto; 
+        width:220px; 
+        height:50px;
+}
+
+    #divPaging > div {
+        float:left;
+        width: 30px;
+        margin:0 auto;
+        text-align:center;
+}
+
+    #liSearchOption {clear:both;}
+    #liSearchOption > div {
+        margin:0 auto; 
+        margin-top: 30px; 
+        width:auto; 
+        height:100px; 
+
+}
+
+    .left {
+        text-align : left;
+}
+</style>
+
+
 </head>
 <body>
 
   <div class="container">
 
-    <form id="login_form" class="well form-horizontal" action="login" method="post">
-<fieldset>
+    <div id="mainWrapper">
 
-<!-- Form Name -->
-<legend>Contact Us Today!</legend>
-<!-- Text input-->
+        <ul>
+            <!-- 게시판 제목 -->
+            <li>게시판 Title </li>
 
-<div id="ultbl01">
-
-<ul alt="table" class="ultable ultable-striped ultable-bordered ultable-hover">
-
- <li alt="thead">
-
-  <ul alt="tr">
-
-   <li alt="1">No</li>
-
-   <li alt="2">제목</li>
-
-   <li alt="3">작성자</li>
-
-   <li alt="4">작성일</li>
-
-   <li alt="5">조회</li>
-
-  </ul>
-
- </li>
-
-    <li alt="tbody">
-
-     <ul alt="tr">
-
-   <li alt="1">903</li>
-
-        <li alt="2"><a href="#">금주의 공지 사항 입니다</a></li>
-
-   <li alt="3">관리자</li>
-
-   <li alt="4">17-07-29 09:00</li>
-
-   <li alt="5">310</li>
-
-  </ul>
-
-     <ul alt="tr">
-
-   <li alt="1">902</li>
-
-        <li alt="2"><a href="#">금주의 공지 사항 입니다</a></li>
-
-   <li alt="3">관리자</li>
-
-   <li alt="4">17-07-28 09:00</li>
-
-   <li alt="5">301</li>
-
-  </ul>
-
-     <ul alt="tr">
-
-   <li alt="1">901</li>
-
-        <li alt="2"><a href="#">금주의 공지 사항 입니다</a></li>
-
-   <li alt="3">관리자</li>
-
-   <li alt="4">17-07-27 09:00</li>
-
-   <li alt="5">303</li>
-
-  </ul>
-
-    </li> 
-
-</ul>
-
-</div>
+            <!-- 게시판 목록  -->
+            <li>
+                <ul id ="ulTable">
+                    <li>
+                        <ul>
+                            <li>No</li>
+                            <li>제목</li>
+                            <li>작성일</li>
+                            <li>작성자</li>
+                            <li>조회수</li>
+                        </ul>
+                    </li>
+                    <!-- 게시물이 출력될 영역 -->
+                 <c:forEach var="board" items="${boardList}"> 
+                    <li>
+                        <ul>
+                            <li>${board.boardNum}</li>
+                            <li class="left">${board.title}</li>
+                            <li>${board.regdate}</li>
+                            <li>${board.userId}</li>
+                            <li>${board.hitcount}</li>
+                        </ul>
+                    </li>
+				</c:forEach>
+        </ul>
+    </div>
 
 
-</fieldset>
-</form>
-</div>
+
+
+
     </div><!-- /.container -->
+    
+    
+    
+    
+    
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- member SQL -->
+<mapper namespace="dao.BoardMapper">
+
+<!-- user join -->
+<select id="boardList" resultType="Board">
+
+	SELECT
+		boardNum,
+		userId,
+		title,
+		content,
+		hitcount,
+		TO_CHAR(regdate,'YYYY.MM.DD') regdate,
+		originalFile,
+		savedFile
+	FROM BOARD2
+	ORDER BY boardNum DESC
+</select>
+
+</mapper>
