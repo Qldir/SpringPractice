@@ -28,7 +28,7 @@
 		#{username},
 		#{gender},
 		#{hobby},
-		#{birth},
+		TO_DATE(#{birth}, 'YY/MM/DD'),
 		#{age},
 		#{phone},
 		#{address},
@@ -41,7 +41,7 @@
 	SELECT
 		userid,
 		username
-	FROM MEMBER
+	FROM MEMBERS2
 	WHERE
 		userid = #{userid}
 	AND
