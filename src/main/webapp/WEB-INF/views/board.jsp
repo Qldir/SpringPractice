@@ -53,25 +53,78 @@ $(function(){
 <legend>Contact Us Today!</legend>
 <!-- Text input-->
 
-<div class="form-group">
-  <label class="col-md-4 control-label">ID</label>  
-  <div class="col-md-4 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  name="userid" placeholder="ID" class="form-control"  type="text">
-    </div>
-  </div>
+<div id="ultbl01">
+
+<ul alt="table" class="ultable ultable-striped ultable-bordered ultable-hover">
+
+ <li alt="thead">
+
+  <ul alt="tr">
+
+   <li alt="1">No</li>
+
+   <li alt="2">제목</li>
+
+   <li alt="3">작성자</li>
+
+   <li alt="4">작성일</li>
+
+   <li alt="5">조회</li>
+
+  </ul>
+
+ </li>
+
+    <li alt="tbody">
+
+     <ul alt="tr">
+
+   <li alt="1">903</li>
+
+        <li alt="2"><a href="#">금주의 공지 사항 입니다</a></li>
+
+   <li alt="3">관리자</li>
+
+   <li alt="4">17-07-29 09:00</li>
+
+   <li alt="5">310</li>
+
+  </ul>
+
+     <ul alt="tr">
+
+   <li alt="1">902</li>
+
+        <li alt="2"><a href="#">금주의 공지 사항 입니다</a></li>
+
+   <li alt="3">관리자</li>
+
+   <li alt="4">17-07-28 09:00</li>
+
+   <li alt="5">301</li>
+
+  </ul>
+
+     <ul alt="tr">
+
+   <li alt="1">901</li>
+
+        <li alt="2"><a href="#">금주의 공지 사항 입니다</a></li>
+
+   <li alt="3">관리자</li>
+
+   <li alt="4">17-07-27 09:00</li>
+
+   <li alt="5">303</li>
+
+  </ul>
+
+    </li> 
+
+</ul>
+
 </div>
 
-
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label"></label>
-  <div class="col-md-4">
-    <button type="submit" class="btn btn-warning" >Login <span class="glyphicon glyphicon-send"></span></button>
-    <button type="button" onclick="contact()" class="btn btn-warning" >contact <span class="glyphicon glyphicon-send"></span></button>
-  </div>
-</div>
 
 </fieldset>
 </form>
