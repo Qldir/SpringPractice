@@ -36,7 +36,7 @@ public class HomeController {
 		hsession.setAttribute("userid", user.getUserid());
 		hsession.setAttribute("username", user.getUsername());
 		
-		return "redirect:/";
+		return "board";
 	}
 	
 	
