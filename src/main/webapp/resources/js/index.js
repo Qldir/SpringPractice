@@ -42,9 +42,10 @@
                     notEmpty: {
                         message: 'Please supply your phone number'
                     },
-                    phone: {
-                        country: 'US',
-                        message: 'Please supply a vaild phone number with area code'
+                    stringLength: {
+                    	min: 12,
+                        max: 12,
+                        message: 'Please supply a vaild phone number'
                     }
                 }
             },
