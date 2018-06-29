@@ -33,7 +33,7 @@ function contact() {
 <body>
 
   <div class="container">
-
+	<form action="writeboard" method="post" enctype="multipart/form-data">
     <div id="mainWrapper">
 
 		<ul id="title">
@@ -46,16 +46,26 @@ function contact() {
                 <ul id ="ulTable">
                     <li>
                         <ul>
-                        	<li>제목</li>
-                            <input class="left" type="text" />
+                            <input name="title" type="text" placeholder="제목을 입력 해 주세요" />
                         </ul>
                     </li>
                     <!-- 게시물이 출력될 영역 -->
-				
-				<input class="button" name="modify" type="button" value="수정"> <input class="button" name="write" type="button" onclick="write()" value="글쓰기">
+					<li>
+						<ul>
+							<textarea name="content" placeholder="글 내용을 입력 해 주세요"></textarea>
+						</ul>
+					</li>
+					
+					<li>
+						<ul>
+							<input name="attach" type="file">
+						</ul>
+					</li>
+				<input class="button" name="modify" type="button" value="목록"> <input class="button" name="write" type="submit" value="등록">
         </ul>
     </div>
 
+	</form>
 
 
 
