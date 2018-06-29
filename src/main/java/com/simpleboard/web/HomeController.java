@@ -78,5 +78,11 @@ public class HomeController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value = "/writeForm", method = RequestMethod.POST)
+	public String writeForm() {
+		
+		return "boardWriteForm";
+	}
+	
 	
 }
