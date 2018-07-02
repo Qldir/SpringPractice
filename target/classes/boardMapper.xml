@@ -22,4 +22,26 @@
 	ORDER BY boardNum DESC
 </select>
 
+<insert id="insertBoard" parameterType="Board">
+	INSERT INTO BOARD2
+	(
+		boardNum,
+		userId,
+		title,
+		content,
+		originalFile,
+		savedFile
+	)
+	VALUES
+	
+	(
+		BOARD2SEQ.NEXTVAL,
+		#{userId},
+		#{title},
+		#{content},
+		#{originalFile},
+		#{savedFile}
+	)
+</insert>
+
 </mapper>

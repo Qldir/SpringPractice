@@ -58,7 +58,7 @@ function contact() {
                     <li>
                         <ul>
                             <li>${board.boardNum}</li>
-                            <li class="left">${board.title}</li>
+                            <li class="left"><a href="boardInfo?boardNum=${board.boardNum}">${board.title}</a></li>
                             <li>${board.regdate}</li>
                             <li>${board.userId}</li>
                             <li>${board.hitcount}</li>
@@ -75,7 +75,7 @@ function contact() {
 
     </div><!-- /.container -->
     
-    
+   <%--  <a href="download?boardnum=${boardnum}"><h3>${board.originalname}</h3></a> --%>
     
     
     
