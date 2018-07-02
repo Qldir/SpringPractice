@@ -6,4 +6,5 @@ import dto.Board;
 
 public interface BoardMapper {
 	public List<Board> boardList();
+	public int insertBoard(Board board);
 }
