@@ -21,11 +21,15 @@
 
 function contact() {
 
-	var form = document.forms["login_form"];
+	var form = document.forms["write_form"];
 	
 	form.action = "contact"
 	form.submit();
 };
+
+function boardList() {
+	location.href="board";
+}
 	
 </script>
 
@@ -33,7 +37,7 @@ function contact() {
 <body>
 
   <div class="container">
-	<form action="writeboard" method="post" enctype="multipart/form-data">
+	<form id="write_form" action="writeboard" method="post" enctype="multipart/form-data">
     <div id="mainWrapper">
 
 		<ul id="title">
@@ -58,12 +62,11 @@ function contact() {
 					
 					<li>
 						<ul>
-							<input name="attach" type="file">
+							<input name="uploadfile" type="file">
 						</ul>
 					</li>
-				<input class="button" name="modify" type="button" value="목록"> <input class="button" name="write" type="submit" value="등록">
+				<input class="button" onclick="boardList()" type="button" value="목록"> <input class="button" name="write" type="submit" value="등록">
         </ul>
-    </div>
 
 	</form>
 

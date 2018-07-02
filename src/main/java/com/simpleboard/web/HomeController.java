@@ -1,7 +1,10 @@
 package com.simpleboard.web;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import dao.BoardMapper;
 import dao.MemberMapper;
@@ -25,6 +29,8 @@ public class HomeController {
 	
 	@Autowired
 	SqlSession session;
+	
+	private static final String UPLOADPATH="D:\\\\tempFile";
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
@@ -82,6 +88,34 @@ public class HomeController {
 	public String writeForm() {
 		
 		return "boardWriteForm";
+	}
+	
+	@RequestMapping(value = "/writeboard", method = RequestMethod.POST)
+	public String writeBoard(Board board, MultipartFile uploadfile, HttpSession session) {
+		
+		String userId = (String)session.getAttribute("userid");
+		board.setUserId(userId);
+		
+		UUID uuid=UUID.randomUUID();
+		String originalFile = uploadfile.getOriginalFilename();
+		String saveName = uuid+"_"+uploadfile.getOriginalFilename();
+		
+		board.setOriginalFile(originalFile);
+		board.setSavedFile(saveName);
+		
+		File file=new File(UPLOADPATH, saveName);
+		
+		try {
+			uploadfile.transferTo(file);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "redirect:/board";
 	}
 	
 	
