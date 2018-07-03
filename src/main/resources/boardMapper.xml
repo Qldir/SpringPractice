@@ -44,4 +44,26 @@
 	)
 </insert>
 
+<select id="infoBoard" parameterType="Board" resultType="Board">
+	SELECT
+		boardNum,
+		userId,
+		title,
+		content,
+		hitcount,
+		TO_CHAR(regdate,'YYYY.MM.DD') regdate,
+		originalFile,
+		savedFile
+	FROM BOARD2
+	WHERE boardNum = #{boardNum}
+</select>
+
+<update id="updateHits" parameterType="Board">
+	UPDATE BOARD2
+	SET
+		hitcount = hitcount+1
+	WHERE
+		boardNum = #{boardNum}
+</update>
+
 </mapper>

@@ -66,33 +66,28 @@ public class HomeController {
 		BoardMapper mapper = session.getMapper(BoardMapper.class);
 		boardList = mapper.boardList();
 		
-		System.out.println(boardList);
 		model.addAttribute("boardList", boardList);
 		
 		return "board";
 	}
 	
 	@RequestMapping(value = "/boardInfo", method = RequestMethod.GET)
-	public String boardInfo(Board board) {
+	public String boardInfo(Board board, Model model) {
 		
-		System.out.println(board);
+		Board boardInfo = new Board();
 		
-		/*BoardMapper mapper = session.getMapper(BoardMapper.class);
-		boardList = mapper.boardList();
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		boardInfo = mapper.infoBoard(board);
+		mapper.updateHits(board);
+
+		model.addAttribute("boardInfo", boardInfo);
 		
-		System.out.println(boardList);
-		model.addAttribute("boardList", boardList);*/
 		
-		return "redirect:/board";
+		return "boardInfo";
 	}
 	
 	
-	
-	
-	
 
-	
-	
 	@RequestMapping(value = "/contact", method = RequestMethod.POST)
 	public String contact() {
 		
@@ -157,27 +152,31 @@ public class HomeController {
 	
 	//다운로드
 	
-	@RequestMapping(value = "/goDownload", method = RequestMethod.POST)
-	public String goDownload() {
-		
-		return "Download";
-	}
 	
-	@RequestMapping(value = "/download", method = RequestMethod.POST)
-	public String download(Model model, HttpServletResponse reponse) {
+	@RequestMapping(value = "/download", method = RequestMethod.GET)
+	public void download(Board board, Model model, HttpServletResponse reponse) {
+		System.out.println(board);
+		Board boardInfo = new Board();
+		
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		boardInfo = mapper.infoBoard(board);
+		
+		System.out.println(boardInfo);
+		
 		
 		try {
-			reponse.setHeader("Content-Disposition", "attachment;filename="+URLEncoder.encode("originalFile", "UTF-8"));
+			reponse.setHeader("Content-Disposition", "attachment;filename="+URLEncoder.encode(boardInfo.getOriginalFile(), "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		String fullPath=UPLOADPATH+"\\\\originalFilename";
+		String fullPath=UPLOADPATH+"\\\\"+boardInfo.getSavedFile();
 		
 		FileInputStream fis=null;
 		ServletOutputStream sos=null;
 		
+		System.out.println(fullPath);
 		try {
 			
 			fis=new FileInputStream(fullPath);
@@ -191,8 +190,7 @@ public class HomeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return "redirect:/goDownload";
+
 	}
 	
 	
