@@ -2,7 +2,6 @@ package com.simpleboard.web;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -14,6 +13,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,12 +21,14 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import dao.BoardMapper;
 import dao.MemberMapper;
 import dto.Board;
 import dto.Member;
+import util.PageNavigator;
 
 /**
  * Handles requests for the application home page.
@@ -37,6 +39,8 @@ public class HomeController {
 	@Autowired
 	SqlSession session;
 	
+	final int countPerPage = 10;
+	final int pagePerGroup = 5;
 	private static final String UPLOADPATH="D:\\\\tempFile";
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -58,15 +62,29 @@ public class HomeController {
 		return "redirect:/board";
 	}
 	
+	
 	@RequestMapping(value = "/board", method = RequestMethod.GET)
-	public String board(Model model) {
+	public String board(@RequestParam(value="page", defaultValue="1") int page, Model model) {
 		
 		List<Board> boardList = new ArrayList<Board>();
 		
 		BoardMapper mapper = session.getMapper(BoardMapper.class);
-		boardList = mapper.boardList();
+		
+		
+		
+		int total = mapper.getTotal();
+		
+		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
+		
+		RowBounds rb = new RowBounds(navi.getStartRecord(), navi.getCountPerPage());
+		
+		boardList = mapper.boardList(rb);
+		
+		
 		
 		model.addAttribute("boardList", boardList);
+		model.addAttribute("navi", navi);
+		
 		
 		return "board";
 	}
@@ -105,7 +123,7 @@ public class HomeController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/writeForm", method = RequestMethod.POST)
+	@RequestMapping(value = "/writeForm", method = RequestMethod.GET)
 	public String writeForm() {
 		
 		return "boardWriteForm";
@@ -192,6 +210,7 @@ public class HomeController {
 		}
 
 	}
+	
 	
 	
 }

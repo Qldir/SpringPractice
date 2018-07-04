@@ -19,13 +19,14 @@
       
 <script>
 
-function contact() {
-
-	var form = document.forms["login_form"];
-	
-	form.action = "contact"
+function currentPage(currentPage){
+	var form = document.getElementById('board_form');
+	var page = document.getElementById('page');
+	page.value = currentPage;
+	form.action = "board";
 	form.submit();
 };
+
 	
 </script>
 
@@ -33,7 +34,7 @@ function contact() {
 <body>
 
   <div class="container">
-	<form id=board_form action="writeForm" method="post">
+	<form id=board_form action="writeForm" method="get">
     <div id="mainWrapper">
 
 		<ul id="title">
@@ -65,8 +66,12 @@ function contact() {
                         </ul>
                     </li>
 				</c:forEach>
-				<input class="button" name="modify" type="button" value="수정"> <input class="button" name="write" type="submit" value="글쓰기">
-        </ul>
+				<input type="hidden" name="page" id="page" />
+				<input class="button" name="pre" type="button" onclick="currentPage(${navi.currentPage-1})" value="이전페이지"/> <input class="button" name="next" type="button" onclick="currentPage(${navi.currentPage+1})" value="다음페이지"/>
+				<input class="button" name="modify" type="button" value="수정"/> <input class="button" name="write" type="submit" value="글쓰기"/>
+       		 </ul>
+       	</li>
+      </ul>
     </div>
 
 
