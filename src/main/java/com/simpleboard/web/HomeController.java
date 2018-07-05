@@ -86,6 +86,7 @@ public class HomeController {
 		model.addAttribute("navi", navi);
 		
 		
+		
 		return "board";
 	}
 	
