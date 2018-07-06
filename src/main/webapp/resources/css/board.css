@@ -78,6 +78,19 @@
     .left {
         text-align : left;
 }
+	.button2{
+	margin-top: 5px;
+	width:70px;
+	background-color: #f8585b;
+    border: none;
+    color:#fff;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px;
+    cursor: pointer;
+	}
 
 	.button{
 		margin-top: 5px;

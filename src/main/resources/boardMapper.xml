@@ -7,7 +7,7 @@
 <mapper namespace="dao.BoardMapper">
 
 <!-- user join -->
-<select id="boardList" resultType="Board">
+<select id="boardList" parameterType="string" resultType="Board">
 
 	SELECT
 		boardNum,
@@ -19,6 +19,9 @@
 		originalFile,
 		savedFile
 	FROM BOARD2
+	<if test="_parameter != null">
+		WHERE title like '%' || #{searchKeyword} || '%'
+	</if>
 	ORDER BY boardNum DESC
 </select>
 
@@ -33,14 +36,15 @@
 		savedFile
 	)
 	VALUES
-	
 	(
 		BOARD2SEQ.NEXTVAL,
 		#{userId},
 		#{title},
 		#{content},
+		<if test="#{originalFile != null">
 		#{originalFile},
 		#{savedFile}
+		</if>
 	)
 </insert>
 

@@ -64,21 +64,21 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/board", method = RequestMethod.GET)
-	public String board(@RequestParam(value="page", defaultValue="1") int page, Model model) {
+	public String board(@RequestParam(value="page", defaultValue="1") int page, Model model, String searchKeyword) {
 		
 		List<Board> boardList = new ArrayList<Board>();
 		
 		BoardMapper mapper = session.getMapper(BoardMapper.class);
 		
+		System.out.println(searchKeyword);
 		
-		
-		int total = mapper.getTotal();
+		int total = mapper.getTotal(); //전체 게시글 갯수
 		
 		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
 		
 		RowBounds rb = new RowBounds(navi.getStartRecord(), navi.getCountPerPage());
 		
-		boardList = mapper.boardList(rb);
+		boardList = mapper.boardList(searchKeyword,rb);
 		
 		
 		
