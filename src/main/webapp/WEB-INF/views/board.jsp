@@ -27,6 +27,12 @@ function currentPage(currentPage){
 	form.submit();
 };
 
+function logout(){
+	var form = document.getElementById('board_form');
+	form.action = "logout";
+	form.submit();
+};
+
 	
 </script>
 
@@ -78,7 +84,7 @@ function currentPage(currentPage){
 				</c:forEach>
 				
 				<input class="button2" name="next" type="button" onclick="currentPage(${navi.currentPage+1})" value="다음페이지"/>
-				<input class="button" name="modify" type="button" value="수정"/> <input class="button" name="write" type="submit" value="글쓰기"/>
+				<input class="button" name="logout" type="button" onclick="logout()" value="logout"/> <input class="button" name="write" type="submit" value="글쓰기"/>
        		 </ul>
        	</li>
       </ul>

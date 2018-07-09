@@ -11,6 +11,11 @@
         margin:0;
 }
 
+	.listitem:hover{
+	background-color: #cccccc;
+	}
+
+
     #mainWrapper{
         width: 800px;
         margin: 0 auto; /*가운데 정렬*/

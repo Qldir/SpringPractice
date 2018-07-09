@@ -62,6 +62,14 @@ public class HomeController {
 		return "redirect:/board";
 	}
 	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession hsession) {
+
+		hsession.invalidate();
+		
+		return "redirect:/";
+	}
+	
 	
 	@RequestMapping(value = "/board", method = RequestMethod.GET)
 	public String board(@RequestParam(value="page", defaultValue="1") int page, Model model, String searchKeyword) {
