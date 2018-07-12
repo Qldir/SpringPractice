@@ -27,6 +27,12 @@ function currentPage(currentPage){
 	form.submit();
 };
 
+function logout(){
+	var form = document.getElementById('board_form');
+	form.action = "logout";
+	form.submit();
+};
+
 	
 </script>
 
@@ -55,8 +61,6 @@ function currentPage(currentPage){
                         </ul>
                     </li>
                     
-                    a=1;
-                    
                     <!-- 게시물이 출력될 영역 -->
                  <c:forEach var="board" items="${boardList}"> 
                     <li>
@@ -69,15 +73,18 @@ function currentPage(currentPage){
                         </ul>
                     </li>
 				</c:forEach>
+					<li><input type="text" name="searchKeyword"> <input type="button" onclick="currentPage(1)" value="검색"></li>
+     				<ul></ul>
+     				
 				<input type="hidden" name="page" id="page" />
-				<input class="button" name="pre" type="button" onclick="currentPage(${navi.currentPage-1})" value="이전페이지"/> 
+				<input class="button2" name="pre" type="button" onclick="currentPage(${navi.currentPage-1})" value="이전페이지"/> 
 				
 				<c:forEach var="pageNum" begin="${navi.startPageGroup}" end="${navi.endPageGroup}">
 					<a href="board?page=${pageNum}">${pageNum}</a>
 				</c:forEach>
 				
-				<input class="button" name="next" type="button" onclick="currentPage(${navi.currentPage+1})" value="다음페이지"/>
-				<input class="button" name="modify" type="button" value="수정"/> <input class="button" name="write" type="submit" value="글쓰기"/>
+				<input class="button2" name="next" type="button" onclick="currentPage(${navi.currentPage+1})" value="다음페이지"/>
+				<input class="button" name="logout" type="button" onclick="logout()" value="logout"/> <input class="button" name="write" type="submit" value="글쓰기"/>
        		 </ul>
        	</li>
       </ul>

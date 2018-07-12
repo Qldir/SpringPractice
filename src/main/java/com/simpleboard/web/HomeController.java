@@ -22,13 +22,14 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import dao.BoardMapper;
-import dao.MemberMapper;
-import dto.Board;
-import dto.Member;
-import util.PageNavigator;
+import com.simpleboard.web.dao.BoardMapper;
+import com.simpleboard.web.dao.MemberMapper;
+import com.simpleboard.web.dto.Board;
+import com.simpleboard.web.dto.Member;
+import com.simpleboard.web.util.PageNavigator;
 
 /**
  * Handles requests for the application home page.
@@ -46,8 +47,29 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
 		
-		return "home";
+		//return "home";
+		return "testHome";
 	}
+	
+	@RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
+	public @ResponseBody String example2(String word) {	//jsp로 안가고 client에게 전달 
+		System.out.println(word);
+		word=null;
+		return word;
+		
+	}
+	
+	
+	@RequestMapping(value = "/idcheck", method = RequestMethod.GET)
+	public @ResponseBody int example(Member member) {	//jsp로 안가고 client에게 전달 
+		
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		int result = mapper.idcheck(member);
+		System.out.println(result);
+		return result;
+		
+	}
+	
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Member member, HttpSession hsession) {
@@ -62,23 +84,31 @@ public class HomeController {
 		return "redirect:/board";
 	}
 	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession hsession) {
+
+		hsession.invalidate();
+		
+		return "redirect:/";
+	}
+	
 	
 	@RequestMapping(value = "/board", method = RequestMethod.GET)
-	public String board(@RequestParam(value="page", defaultValue="1") int page, Model model) {
+	public String board(@RequestParam(value="page", defaultValue="1") int page, Model model, String searchKeyword) {
 		
 		List<Board> boardList = new ArrayList<Board>();
 		
 		BoardMapper mapper = session.getMapper(BoardMapper.class);
 		
+		System.out.println(searchKeyword);
 		
-		
-		int total = mapper.getTotal();
+		int total = mapper.getTotal(); //전체 게시글 갯수
 		
 		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
 		
 		RowBounds rb = new RowBounds(navi.getStartRecord(), navi.getCountPerPage());
 		
-		boardList = mapper.boardList(rb);
+		boardList = mapper.boardList(searchKeyword,rb);
 		
 		
 		

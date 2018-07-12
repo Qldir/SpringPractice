@@ -4,11 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- member SQL -->
-<mapper namespace="dao.BoardMapper">
+<mapper namespace="com.simpleboard.web.dao.BoardMapper">
 
 <!-- user join -->
-<select id="boardList" resultType="Board">
-
+<select id="boardList" parameterType="string" resultType="Board">
 	SELECT
 		boardNum,
 		userId,
@@ -19,6 +18,9 @@
 		originalFile,
 		savedFile
 	FROM BOARD2
+	<if test="_parameter != null">
+		WHERE title like '%' || #{searchKeyword} || '%'
+	</if>
 	ORDER BY boardNum DESC
 </select>
 
@@ -33,14 +35,15 @@
 		savedFile
 	)
 	VALUES
-	
 	(
 		BOARD2SEQ.NEXTVAL,
 		#{userId},
 		#{title},
 		#{content},
+		<if test="#{originalFile != null">
 		#{originalFile},
 		#{savedFile}
+		</if>
 	)
 </insert>
 
