@@ -1,10 +1,10 @@
-package dao;
+package com.simpleboard.web.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 
-import dto.Board;
+import com.simpleboard.web.dto.Board;
 
 public interface BoardMapper {
 	public List<Board> boardList(String searchKeyword, RowBounds rb);

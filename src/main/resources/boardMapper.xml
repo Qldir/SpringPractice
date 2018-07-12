@@ -4,11 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- member SQL -->
-<mapper namespace="dao.BoardMapper">
+<mapper namespace="com.simpleboard.web.dao.BoardMapper">
 
 <!-- user join -->
 <select id="boardList" parameterType="string" resultType="Board">
-
 	SELECT
 		boardNum,
 		userId,

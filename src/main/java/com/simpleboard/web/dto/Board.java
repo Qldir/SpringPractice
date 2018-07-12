@@ -1,4 +1,4 @@
-package dto;
+package com.simpleboard.web.dto;
 
 public class Board {
 	private int boardNum;

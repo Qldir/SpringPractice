@@ -22,13 +22,14 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import dao.BoardMapper;
-import dao.MemberMapper;
-import dto.Board;
-import dto.Member;
-import util.PageNavigator;
+import com.simpleboard.web.dao.BoardMapper;
+import com.simpleboard.web.dao.MemberMapper;
+import com.simpleboard.web.dto.Board;
+import com.simpleboard.web.dto.Member;
+import com.simpleboard.web.util.PageNavigator;
 
 /**
  * Handles requests for the application home page.
@@ -46,8 +47,29 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
 		
-		return "home";
+		//return "home";
+		return "testHome";
 	}
+	
+	@RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
+	public @ResponseBody String example2(String word) {	//jsp로 안가고 client에게 전달 
+		System.out.println(word);
+		word=null;
+		return word;
+		
+	}
+	
+	
+	@RequestMapping(value = "/idcheck", method = RequestMethod.GET)
+	public @ResponseBody int example(Member member) {	//jsp로 안가고 client에게 전달 
+		
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		int result = mapper.idcheck(member);
+		System.out.println(result);
+		return result;
+		
+	}
+	
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Member member, HttpSession hsession) {

@@ -22,7 +22,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<beans:bean id="LoginInterceptor" class="interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="LoginInterceptor" class="com.simpleboard.web.interceptor.LoginInterceptor"></beans:bean>
 	
 	<!-- 로그인 인터셉터를 경유해서 처리할 경로들 지정 -->
 	<!-- 현 XML파일 상단의 beans 태그 내에 xmlns:mvc="http://www.springframework.org/schema/mvc" 추가하고 사용 -->

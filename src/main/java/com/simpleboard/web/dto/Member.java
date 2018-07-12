@@ -1,4 +1,4 @@
-package dto;
+package com.simpleboard.web.dto;
 
 //Member 테이블 dto
 public class Member {

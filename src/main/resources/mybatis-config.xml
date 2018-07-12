@@ -7,8 +7,8 @@
 
 	<!-- Java Class에 대한 alias 지정 -->
 	<typeAliases>
-		<typeAlias type="dto.Member" alias="Member" />
-		<typeAlias type="dto.Board" alias="Board" />
+		<typeAlias type="com.simpleboard.web.dto.Member" alias="Member" />
+		<typeAlias type="com.simpleboard.web.dto.Board" alias="Board" />
 	</typeAliases>
 	
 	<!-- Mapper 파일 include -->

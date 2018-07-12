@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
@@ -6,17 +8,38 @@
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
 
-
 <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
 <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>
 <link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css'>
 <link rel="stylesheet" href="./resources/css/style.css">
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script src="./resources/js/curvy-text.js"></script>
       
 <script>
+$(function(){
+
+	$("#idcheck").on('click',function(){
+		
+		$.ajax({
+			url: "idcheck",
+			type: "get",
+			data: {"userid":document.getElementById('userid').value},
+			success: function(data){ //data.id (data가 vo인 경우)
+				if(data==0) alert("회원가입이 가능합니다");
+				else alert("중복된 아이디입니다");
+			},
+			error: function(data){
+				alert("통신 실패");
+			}
+			
+		});
+	});
+	
+});
+
 	$(function(){
 		
 		$('.title').curvy({
@@ -45,8 +68,9 @@
   <div class="col-md-4 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  name="userid" placeholder="ID" class="form-control"  type="text">
+  <input id="userid" name="userid" placeholder="ID" class="form-control"  type="text">
     </div>
+    <button id="idcheck">idcheck</button>
   </div>
 </div>
 

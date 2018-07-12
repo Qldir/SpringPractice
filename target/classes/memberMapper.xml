@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- member SQL -->
-<mapper namespace="dao.MemberMapper">
+<mapper namespace="com.simpleboard.web.dao.MemberMapper">
 
 <!-- user join -->
 <insert id="insertMember" parameterType="Member">
@@ -46,6 +46,15 @@
 		userid = #{userid}
 	AND
 		userpwd = #{userpwd}
+</select>
+
+<!-- idcheck -->
+<select id="idcheck" parameterType="Member" resultType="Int">
+	SELECT
+		count(*)
+	FROM MEMBERS2
+	WHERE
+		userid = #{userid}
 </select>
 
 
